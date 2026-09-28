@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="op-hero"><div class="container op-hero-grid">
+  <div>
+    <span class="op-kicker">Servicios de confianza, cerca de ti</span>
+    <h1>Haz crecer tu oficio.<br><span>Reserva con confianza.</span></h1>
+    <p class="op-lead">OficioPro conecta a manicuristas independientes con personas que buscan un servicio profesional, claro y organizado.</p>
+    <div class="op-actions">
+      {% if user.is_authenticated %}<a class="btn btn-teal btn-lg" href="{% url 'accounts:dashboard' %}">Ir a mi panel</a>
+      {% else %}<a class="btn btn-coral btn-lg" href="{% url 'accounts:register' %}">Crear cuenta gratis</a><a class="btn btn-outline-petroleum btn-lg" href="{% url 'accounts:login' %}">Ingresar a mi cuenta</a>{% endif %}
+    </div>
+    <p class="op-caption">Sin costo para probar el prototipo. Tú eliges si buscas o prestas servicios.</p>
+  </div>
+  <div class="op-preview" aria-label="Vista previa del perfil de una profesional">
+    <div class="op-preview-art" aria-hidden="true"><span>✦</span><span>MANICURA</span></div>
+    <div class="op-preview-body">
+      <div><span class="op-status"><span aria-hidden="true">●</span> Perfil de ejemplo</span><h2>Camila · Manicurista</h2></div>
+      <div class="op-service-row"><div><strong>Manicura permanente</strong><small>Duración estimada: 60 min</small></div><strong>$18.000</strong></div>
+      <p class="op-pending"><strong>Catálogo en desarrollo.</strong> Las reservas aún no están habilitadas en este prototipo.</p>
+    </div>
+  </div>
+</div></section>
+<section class="op-section" aria-labelledby="como-funciona"><div class="container">
+  <span class="op-kicker">Simple y transparente</span><h2 id="como-funciona">Una base preparada para cada oficio</h2>
+  <div class="op-steps">
+    <article class="op-card"><span class="op-step-number">1</span><h3>Crea tu cuenta</h3><p>Regístrate como cliente o prestadora. Cada rol tiene un panel propio.</p></article>
+    <article class="op-card"><span class="op-step-number">2</span><h3>Completa tu perfil</h3><p>La publicación de servicios, precios y portafolio es la próxima función planificada.</p></article>
+    <article class="op-card"><span class="op-step-number">3</span><h3>Gestiona reservas</h3><p>La agenda y confirmación de horas se incorporarán en una siguiente versión.</p></article>
+  </div>
+</div></section>
+{% endblock %}
+

@@ -1,0 +1,49 @@
+{% load static %}
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="OficioPro, plataforma para profesionales independientes de servicios de belleza.">
+  <title>{% block title %}OficioPro{% endblock %}</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="{% static 'css/oficiopro.css' %}" rel="stylesheet">
+</head>
+<body>
+  <a class="op-skip-link" href="#contenido">Saltar al contenido principal</a>
+  <header class="op-header">
+    <nav class="container op-navbar" aria-label="Navegación principal">
+      <a class="op-brand" href="{% url 'core:home' %}" aria-label="OficioPro, ir al inicio"><span class="op-mark" aria-hidden="true">OP</span><span>OficioPro</span></a>
+      <div class="op-nav-links">
+        <a class="op-nav-link" href="{% url 'core:home' %}">Inicio</a>
+        {% if user.is_authenticated %}
+          {% if user.is_platform_admin %}<a class="op-nav-link" href="{% url 'admin:index' %}">Administración</a>
+          {% elif user.is_provider %}
+            <a class="op-nav-link" href="{% url 'accounts:dashboard' %}">Mi negocio</a>
+            <a class="op-nav-link" href="{% url 'accounts:provider_services' %}">Servicios</a>
+            <a class="op-nav-link" href="{% url 'accounts:provider_schedule' %}">Agenda</a>
+            <a class="op-nav-link" href="{% url 'accounts:provider_requests' %}">Solicitudes</a>
+            <a class="op-nav-link" href="{% url 'accounts:profile' %}">Perfil</a>
+          {% else %}
+            <a class="op-nav-link" href="{% url 'accounts:explore' %}">Explorar</a>
+            <a class="op-nav-link" href="{% url 'accounts:bookings' %}">Mis reservas</a>
+            <a class="op-nav-link" href="{% url 'accounts:favorites' %}">Favoritos</a>
+            <a class="op-nav-link" href="{% url 'accounts:profile' %}">Perfil</a>
+          {% endif %}
+          {% if not user.is_platform_admin %}<a class="op-nav-link" href="{% url 'accounts:notifications' %}">Avisos</a>{% endif %}
+          <form method="post" action="{% url 'accounts:logout' %}">{% csrf_token %}<button class="btn btn-outline-light" type="submit">Cerrar sesión</button></form>
+        {% else %}
+          <a class="op-nav-link" href="{% url 'accounts:explore' %}">Explorar servicios</a>
+          <a class="op-nav-link" href="{% url 'accounts:login' %}">Ingresar</a>
+          <a class="btn btn-coral" href="{% url 'accounts:register' %}">Crear cuenta</a>
+        {% endif %}
+      </div>
+    </nav>
+  </header>
+  <main id="contenido" tabindex="-1">
+    {% if messages %}<div class="container op-messages" aria-live="polite">{% for message in messages %}<div class="op-alert op-alert--{{ message.tags|default:'info' }}" role="status">{{ message }}</div>{% endfor %}</div>{% endif %}
+    {% block content %}{% endblock %}
+  </main>
+  <footer class="op-footer"><div class="container"><strong>OficioPro</strong><span><a href="{% url 'accounts:help' %}">Centro de ayuda</a> · Prototipo académico</span></div></footer>
+</body>
+</html>

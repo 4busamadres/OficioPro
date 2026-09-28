@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block title %}Mis servicios | OficioPro{% endblock %}
+{% block content %}<section class="op-dashboard"><div class="container"><div class="op-page-heading"><div><span class="op-kicker">Panel del prestador</span><h1>Mis servicios</h1><p>Vista de demostración de la vitrina profesional.</p></div><span class="op-status op-status--pending">Edición próximamente</span></div>
+<div class="op-demo-note" role="note"><strong>Prototipo de solo lectura:</strong> la creación y edición de servicios requiere persistencia y se incorporará en la siguiente versión.</div>
+<div class="op-catalog">{% for service in services %}<article class="op-service-card"><div class="op-avatar" aria-label="Imagen de reserva">{{ service.initials }}</div><div class="op-service-content"><span class="op-status">Publicado como ejemplo</span><h2>{{ service.name }}</h2><dl class="op-facts"><div><dt>Precio</dt><dd>${{ service.price }}</dd></div><div><dt>Duración</dt><dd>{{ service.duration }} min</dd></div></dl></div></article>{% endfor %}</div>
+</div></section>{% endblock %}

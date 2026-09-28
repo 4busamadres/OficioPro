@@ -1,0 +1,10 @@
+{% for hidden in form.hidden_fields %}{{ hidden }}{% endfor %}
+{% for field in form.visible_fields %}
+  <div class="op-field{% if field.errors %} op-field--error{% endif %}">
+    <label for="{{ field.id_for_label }}">{{ field.label }}{% if field.field.required %} <span class="op-required" aria-hidden="true">*</span><span class="visually-hidden"> (obligatorio)</span>{% endif %}</label>
+    {{ field }}
+    {% if field.help_text %}<div class="op-help" id="{{ field.id_for_label }}_help">{{ field.help_text|safe }}</div>{% endif %}
+    {% for error in field.errors %}<p class="op-error" id="{{ field.id_for_label }}_error" role="alert"><span aria-hidden="true">⚠</span> {{ error }}</p>{% endfor %}
+  </div>
+{% endfor %}
+

@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Mi cuenta | OficioPro{% endblock %}
+{% block content %}<section class="op-dashboard"><div class="container">
+  <div class="op-page-heading"><div><span class="op-kicker">Hola, {{ user.first_name|default:user.username }}</span><h1>Panel del cliente</h1><p>Tu cuenta está lista para comenzar.</p></div><span class="op-role-badge">Cliente</span></div>
+  <div class="op-dashboard-grid">
+    <section class="op-card op-card--feature" aria-labelledby="cliente-estado"><span class="op-icon" aria-hidden="true">✓</span><div><h2 id="cliente-estado">Registro completado</h2><p>Ingresaste correctamente como cliente. Cuando el catálogo esté disponible podrás explorar profesionales y reservar una hora.</p></div></section>
+    <aside class="op-card" aria-labelledby="cliente-reservar"><span class="op-status">Flujo disponible</span><h2 id="cliente-reservar">Explorar y reservar</h2><ul class="op-checklist"><li>Catálogo de manicuristas</li><li>Agenda con horarios disponibles</li><li>Resumen y confirmación de reserva</li></ul><a class="btn btn-coral w-100" href="{% url 'accounts:explore' %}">Explorar servicios</a></aside>
+  </div>
+</div></section>{% endblock %}

@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Mi negocio | OficioPro{% endblock %}
+{% block content %}<section class="op-dashboard"><div class="container">
+  <div class="op-page-heading"><div><span class="op-kicker">Hola, {{ user.first_name|default:user.username }}</span><h1>Panel del prestador</h1><p>Tu espacio de trabajo ya está creado.</p></div><span class="op-role-badge">Prestador de servicios</span></div>
+  <div class="op-dashboard-grid">
+    <section class="op-card op-card--feature" aria-labelledby="prestador-estado"><span class="op-icon" aria-hidden="true">✓</span><div><h2 id="prestador-estado">Registro completado</h2><p>Ingresaste correctamente como prestador. OficioPro está orientado inicialmente a manicuristas, pero tu cuenta servirá para incorporar otros oficios.</p></div></section>
+    <aside class="op-card" aria-labelledby="prestador-agenda"><span class="op-status">Vista disponible</span><h2 id="prestador-agenda">Revisa tu negocio</h2><ul class="op-checklist"><li>Perfil y datos de cuenta</li><li>Servicios, precios y duración</li><li>Agenda visual de reservas</li></ul><div class="op-actions"><a class="btn btn-teal" href="{% url 'accounts:provider_schedule' %}">Ver agenda</a><a class="btn btn-outline-petroleum" href="{% url 'accounts:provider_services' %}">Ver servicios</a></div></aside>
+  </div>
+</div></section>{% endblock %}

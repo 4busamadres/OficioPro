@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block title %}Mi perfil | OficioPro{% endblock %}
+{% block content %}<section class="op-dashboard"><div class="container"><div class="op-page-heading"><div><span class="op-kicker">Configuración de cuenta</span><h1>Mi perfil</h1><p>Información registrada en OficioPro.</p></div><span class="op-role-badge">{{ user.get_role_display }}</span></div>
+<div class="op-detail-grid"><section class="op-card"><h2>Datos personales</h2><dl class="op-profile-data"><div><dt>Nombre</dt><dd>{{ user.get_full_name|default:"Sin completar" }}</dd></div><div><dt>Nombre de usuario</dt><dd>{{ user.username }}</dd></div><div><dt>Correo electrónico</dt><dd>{{ user.email }}</dd></div><div><dt>Tipo de cuenta</dt><dd>{{ user.get_role_display }}</dd></div></dl></section><aside class="op-card"><span class="op-status op-status--pending">Próximamente</span><h2>Editar perfil</h2><p>La edición de datos y fotografía todavía no está habilitada. Esta pantalla permite revisar la información real guardada al registrarse.</p></aside></div>
+</div></section>{% endblock %}

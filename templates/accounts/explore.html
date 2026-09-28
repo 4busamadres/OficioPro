@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Explorar servicios | OficioPro{% endblock %}
+{% block content %}<section class="op-dashboard"><div class="container">
+<div class="op-page-heading"><div><span class="op-kicker">Catálogo de demostración</span><h1>Encuentra tu próxima manicurista</h1><p>Compara servicios, duración y precios antes de elegir.</p></div></div>
+<div class="op-demo-note" role="note"><strong>Prototipo:</strong> estos perfiles son datos de ejemplo para demostrar el flujo de reserva.</div>
+<div class="op-catalog">{% for service in services %}<article class="op-service-card">
+<div class="op-avatar" aria-label="Imagen de reserva para {{ service.provider }}">{{ service.initials }}</div>
+<div class="op-service-content"><span class="op-status">Disponible para reserva</span><h2>{{ service.name }}</h2><p class="op-provider">Por {{ service.provider }} · {{ service.location }}</p>
+<dl class="op-facts"><div><dt>Precio</dt><dd>${{ service.price }}</dd></div><div><dt>Duración</dt><dd>{{ service.duration }} min</dd></div></dl>
+<a class="btn btn-teal w-100" href="{% url 'accounts:service_detail' service.slug %}">Ver servicio y horarios</a>{% if user.is_authenticated and user.is_client %}<form method="post" action="{% url 'accounts:toggle_favorite' service.slug %}">{% csrf_token %}<input type="hidden" name="next" value="{% url 'accounts:explore' %}"><button class="btn btn-link w-100" type="submit">{% if service.slug in favorite_slugs %}Quitar de favoritos{% else %}Guardar en favoritos{% endif %}</button></form>{% endif %}</div></article>{% endfor %}</div>
+</div></section>{% endblock %}

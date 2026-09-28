@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Ingresar | OficioPro{% endblock %}
+{% block content %}<section class="op-auth-section"><div class="container"><div class="op-auth-card mx-auto">
+  <span class="op-kicker">Qué bueno verte</span><h1>Ingresa a OficioPro</h1>
+  <p class="text-secondary">Accede con tu nombre de usuario y contraseña.</p>
+  {% if form.non_field_errors %}<div class="op-alert op-alert--error" role="alert"><strong>No pudimos iniciar sesión.</strong> Revisa tu usuario y contraseña e inténtalo nuevamente.</div>{% endif %}
+  <form method="post" novalidate>{% csrf_token %}{% include "accounts/form_fields.html" %}{% if next %}<input type="hidden" name="next" value="{{ next }}">{% endif %}<button class="btn btn-teal btn-lg w-100" type="submit">Ingresar a mi cuenta</button></form>
+  <p class="op-auth-foot">¿Aún no tienes cuenta? <a href="{% url 'accounts:register' %}">Crear cuenta gratis</a></p>
+</div></div></section>{% endblock %}
+

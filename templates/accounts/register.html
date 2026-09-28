@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Crear cuenta | OficioPro{% endblock %}
+{% block content %}<section class="op-auth-section"><div class="container"><div class="op-auth-card mx-auto">
+  <span class="op-kicker">Comienza en minutos</span><h1>Crea tu cuenta</h1>
+  <p class="text-secondary">Elige si quieres contratar servicios o mostrar tu trabajo. Los campos con <span aria-hidden="true">*</span><span class="visually-hidden">asterisco</span> son obligatorios.</p>
+  {% if form.non_field_errors %}<div class="op-alert op-alert--error" role="alert">Revisa los datos del formulario para continuar.</div>{% endif %}
+  <form method="post" novalidate>{% csrf_token %}{% include "accounts/form_fields.html" %}<button class="btn btn-teal btn-lg w-100" type="submit">Crear mi cuenta</button></form>
+  <p class="op-auth-foot">¿Ya tienes una cuenta? <a href="{% url 'accounts:login' %}">Ingresar</a></p>
+</div></div></section>{% endblock %}
+
